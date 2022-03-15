@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Music Song</title>
+</head>
+<body>
+<th:block th:if="${message}">
+    <p style="color:green;" th:text="${message}"></p>
+</th:block>
+<form th:action="@{/update}" th:object="${musicDto}" method="post">
+    <fieldset>
+        <legend>Music Song</legend>
+
+        <table>
+            <tr>
+                <td>
+                <input type="hidden" name="id" th:field="*{id}"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Name :</td>
+                <td><input type="text" th:field="*{nameMusic}"/></td>
+                <td style="color: red" th:if="${#fields.hasErrors('nameMusic')}" th:errors="*{nameMusic}" ></td>
+            </tr>
+            <tr>
+                <td>Singer:</td>
+                <td><input type="text" th:field="*{singer}"/>
+                <td style="color: red" th:if="${#fields.hasErrors('singer')}" th:errors="*{singer}" ></td>
+            </tr>
+            <tr>
+                <td>Type:</td>
+                <td><input type="text" th:field="*{typeMusic}"/>
+                <td style="color: red" th:if="${#fields.hasErrors('typeMusic')}" th:errors="*{typeMusic}" ></td>
+            </tr>
+            <tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Update">
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+</form>
+<a href="/list">Back to list</a>.
+</body>
+</html>
